@@ -1,4 +1,4 @@
-package com.example.githubreposapi;
+package com.example.githubreposapi.integration;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
