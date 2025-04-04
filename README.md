@@ -34,7 +34,7 @@ The server runs by default on [http://localhost:8080](http://localhost:8080)
 
 Returns a list of **non-forked public repositories** of the specified GitHub user, including all branches and their latest commit SHA.
 
-#### ✅ Sample Success Response:
+#### Sample Success Response:
 ```json
 [
   {
@@ -50,7 +50,7 @@ Returns a list of **non-forked public repositories** of the specified GitHub use
 ]
 ```
 
-#### ❌ Sample Error (User Not Found):
+#### Sample Error (User Not Found):
 ```json
 {
   "status": 404,
@@ -60,7 +60,7 @@ Returns a list of **non-forked public repositories** of the specified GitHub use
 
 ---
 
-## 🧪 Testing
+## Testing
 
 To execute integration tests:
 
@@ -78,7 +78,7 @@ Covered scenarios include:
 
 ---
 
-## 📌 Notes
+## Notes
 
 - No pagination support (as per requirements)
 - No authentication required
@@ -87,7 +87,7 @@ Covered scenarios include:
 
 ---
 
-## ✍️ Author
+## Author
 
 Sonia Becz
 
