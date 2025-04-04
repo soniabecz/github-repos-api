@@ -15,6 +15,7 @@ public class GitHubApiIntegrationTests {
     @Autowired
     private MockMvc mockMvc;
 
+    // Test for a known GitHub user with public repositories
     @Test
     void shouldReturnRepositoriesForValidUser() throws Exception {
         mockMvc.perform(get("/repos/octocat"))
@@ -24,6 +25,7 @@ public class GitHubApiIntegrationTests {
                 .andExpect(jsonPath("$[0].branches").isArray());
     }
 
+    // Test for a user that doesn't exist on GitHub – should return 404 with message
     @Test
     void shouldReturn404ForNonExistingUser() throws Exception {
         mockMvc.perform(get("/repos/this-user-does-not-exist-xyz"))
@@ -32,6 +34,7 @@ public class GitHubApiIntegrationTests {
                 .andExpect(jsonPath("$.message").value("User not found"));
     }
 
+    // Edge case: user exists but has no public repositories – expect empty array
     @Test
     void shouldReturnEmptyListForUserWithNoRepositories() throws Exception {
         // This test uses GitHub user 'campuscommune' that exists but has no public repositories; found by search 'type:user repos:0'
@@ -40,6 +43,7 @@ public class GitHubApiIntegrationTests {
                 .andExpect(content().string("[]"));
     }
 
+    // Verifies that returned repositories do not include forks (filtered internally)
     @Test
     void repositoriesShouldNotContainForks() throws Exception {
         mockMvc.perform(get("/repos/octocat"))
@@ -48,6 +52,7 @@ public class GitHubApiIntegrationTests {
                 .andExpect(jsonPath("$[*].branches").isArray());
     }
 
+    // Verifies that branches have both name and last commit SHA fields
     @Test
     void repositoryShouldContainBranchesWithSha() throws Exception {
         mockMvc.perform(get("/repos/octocat"))
